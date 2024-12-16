@@ -1,0 +1,222 @@
+<?php
+session_start();
+include_once "../includes/connect.php";
+include_once "../includes/functions.php";
+
+if (!isset($_SESSION["voter_id"])) {
+	redirectToLogin();
+} else {
+	$user_id = $_SESSION["voter_id"];
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>E voting System</title>
+	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 11]>
+    	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    	<![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="">
+	<meta name="author" content="Phoenixcoded" />
+	<!-- Favicon icon -->
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+	<!-- vendor css -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<style>
+		.navbar {
+			background-color: #007bff;
+		}
+
+		.navbar-brand h3 {
+			color: white;
+			font-weight: bold;
+		}
+
+		.card {
+			transition: transform 0.2s ease-in-out;
+		}
+
+		.card:hover {
+			transform: scale(1.05);
+		}
+
+		.header {
+
+			color: white;
+			padding: 20px 0;
+			text-align: center;
+		}
+
+		.header h1 {
+			font-size: 2.5rem;
+		}
+
+		.container-fluid {
+			margin-top: 20px;
+		}
+
+		.card-icon {
+			font-size: 3rem;
+			margin-bottom: 10px;
+		}
+
+		.card-title {
+			font-size: 1.2rem;
+			font-weight: bold;
+		}
+
+		.footer {
+			background-color: #007bff;
+			color: white;
+			text-align: center;
+			padding: 10px 0;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
+	</style>
+
+
+
+</head>
+
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+	<nav class="pcoded-navbar menu-light ">
+		<div class="navbar-wrapper  ">
+			<div class="navbar-content scroll-div ">
+				<ul class="nav pcoded-inner-navbar ">
+					<li class="nav-item pcoded-menu-caption">
+						<label>Navigation</label>
+					</li>
+					<li class="nav-item">
+						<a href="dashboard.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					</li>
+					<li class="nav-item">
+						<a href="profile.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Profile</span></a>
+					</li>
+
+					<li class="nav-item">
+						<a href="voting-page.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Voting page</span></a>
+					</li>
+
+					<li class="nav-item">
+						<a href="results.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Election Results</span></a>
+					</li>
+
+					<li class="nav-item">
+						<a href="logout.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Logout</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+
+		<div class="m-header">
+			<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+			<a href="#!" class="b-brand">
+				<!-- ========   change your logo hear   ============ -->
+				<p>
+					<h3 class="text-white">E.V.S</h3>
+				</p>
+			</a>
+			<a href="#!" class="mob-toggler">
+				<i class="feather icon-more-vertical"></i>
+			</a>
+		</div>
+
+	</header>
+	<!-- [ Header ] end -->
+	<!-- [ Main Content ] start -->
+	<div class="pcoded-main-container">
+		<div class="pcoded-content">
+			<!-- [ breadcrumb ] start -->
+			<div class="page-header">
+				<div class="header">
+					<h1 class="text-white">Welcome to the E-Voting System</h1>
+					<p>Your voice, your vote!</p>
+				</div>
+			</div>
+
+
+			<!-- [ breadcrumb ] end -->
+			<!-- [ Main Content ] start -->
+			<div class="row mt-5">
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="card text-center">
+						<div class="card-body">
+							<div class="card-icon">
+								<i class="fas fa-user-circle"></i>
+							</div>
+							<h5 class="card-title">Profile</h5>
+							<p class="card-text">View and update your profile information.</p>
+							<a href="profile.php" class="btn btn-primary">Go to Profile</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="card text-center">
+						<div class="card-body">
+							<div class="card-icon">
+								<i class="fas fa-vote-yea"></i>
+							</div>
+							<h5 class="card-title">Voting Page</h5>
+							<p class="card-text">Cast your vote for the candidates.</p>
+							<a href="voting-page.php" class="btn btn-primary">Go to Voting Page</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="card text-center">
+						<div class="card-body">
+							<div class="card-icon">
+								<i class="fas fa-chart-bar"></i>
+							</div>
+							<h5 class="card-title">Election Results</h5>
+							<p class="card-text">View the results of the elections.</p>
+							<a href="results.php" class="btn btn-primary">View Results</a>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			<!-- [ Main Content ] end -->
+		</div>
+	</div>
+	<!-- [ Main Content ] end -->
+	<!-- Required Js -->
+	<script src="assets/js/vendor-all.min.js"></script>
+	<script src="assets/js/plugins/bootstrap.min.js"></script>
+	<script src="assets/js/ripple.js"></script>
+	<script src="assets/js/pcoded.min.js"></script>
+
+	<!-- Apex Chart -->
+	<script src="assets/js/plugins/apexcharts.min.js"></script>
+
+
+	<!-- custom-chart js -->
+	<script src="assets/js/pages/dashboard-main.js"></script>
+</body>
+
+</html>
